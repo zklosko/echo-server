@@ -1,0 +1,11 @@
+C:\Users\Dell\Documents\GitHub\echo-server\EchoServer.State\bin\Debug\net10.0\EchoServer.State.deps.json
+C:\Users\Dell\Documents\GitHub\echo-server\EchoServer.State\bin\Debug\net10.0\EchoServer.State.dll
+C:\Users\Dell\Documents\GitHub\echo-server\EchoServer.State\bin\Debug\net10.0\EchoServer.State.pdb
+C:\Users\Dell\Documents\GitHub\echo-server\EchoServer.State\obj\Debug\net10.0\EchoServer.State.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dell\Documents\GitHub\echo-server\EchoServer.State\obj\Debug\net10.0\EchoServer.State.AssemblyInfoInputs.cache
+C:\Users\Dell\Documents\GitHub\echo-server\EchoServer.State\obj\Debug\net10.0\EchoServer.State.AssemblyInfo.cs
+C:\Users\Dell\Documents\GitHub\echo-server\EchoServer.State\obj\Debug\net10.0\EchoServer.State.csproj.CoreCompileInputs.cache
+C:\Users\Dell\Documents\GitHub\echo-server\EchoServer.State\obj\Debug\net10.0\EchoServer.State.dll
+C:\Users\Dell\Documents\GitHub\echo-server\EchoServer.State\obj\Debug\net10.0\refint\EchoServer.State.dll
+C:\Users\Dell\Documents\GitHub\echo-server\EchoServer.State\obj\Debug\net10.0\EchoServer.State.pdb
+C:\Users\Dell\Documents\GitHub\echo-server\EchoServer.State\obj\Debug\net10.0\ref\EchoServer.State.dll

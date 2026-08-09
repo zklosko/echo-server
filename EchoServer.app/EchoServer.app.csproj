@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\EchoServer.State\EchoServer.State.csproj" />
+    <ProjectReference Include="..\EchoServer.Protocol\EchoServer.Protocol.csproj" />
+    <ProjectReference Include="..\EchoServer.Transport\EchoServer.Transport.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+</Project>

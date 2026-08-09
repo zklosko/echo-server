@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="EchoServer.App/EchoServer.App.csproj" />
+  <Project Path="EchoServer.Protocol/EchoServer.Protocol.csproj" />
+  <Project Path="EchoServer.State/EchoServer.State.csproj" />
+  <Project Path="EchoServer.Transport/EchoServer.Transport.csproj" />
+</Solution>

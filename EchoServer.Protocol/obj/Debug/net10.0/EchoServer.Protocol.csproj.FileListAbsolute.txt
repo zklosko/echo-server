@@ -1,0 +1,11 @@
+C:\Users\Dell\Documents\GitHub\echo-server\EchoServer.Protocol\bin\Debug\net10.0\EchoServer.Protocol.deps.json
+C:\Users\Dell\Documents\GitHub\echo-server\EchoServer.Protocol\bin\Debug\net10.0\EchoServer.Protocol.dll
+C:\Users\Dell\Documents\GitHub\echo-server\EchoServer.Protocol\bin\Debug\net10.0\EchoServer.Protocol.pdb
+C:\Users\Dell\Documents\GitHub\echo-server\EchoServer.Protocol\obj\Debug\net10.0\EchoServer.Protocol.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dell\Documents\GitHub\echo-server\EchoServer.Protocol\obj\Debug\net10.0\EchoServer.Protocol.AssemblyInfoInputs.cache
+C:\Users\Dell\Documents\GitHub\echo-server\EchoServer.Protocol\obj\Debug\net10.0\EchoServer.Protocol.AssemblyInfo.cs
+C:\Users\Dell\Documents\GitHub\echo-server\EchoServer.Protocol\obj\Debug\net10.0\EchoServer.Protocol.csproj.CoreCompileInputs.cache
+C:\Users\Dell\Documents\GitHub\echo-server\EchoServer.Protocol\obj\Debug\net10.0\EchoServer.Protocol.dll
+C:\Users\Dell\Documents\GitHub\echo-server\EchoServer.Protocol\obj\Debug\net10.0\refint\EchoServer.Protocol.dll
+C:\Users\Dell\Documents\GitHub\echo-server\EchoServer.Protocol\obj\Debug\net10.0\EchoServer.Protocol.pdb
+C:\Users\Dell\Documents\GitHub\echo-server\EchoServer.Protocol\obj\Debug\net10.0\ref\EchoServer.Protocol.dll
