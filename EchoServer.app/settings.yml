@@ -1,0 +1,5 @@
+﻿port: 4703
+eom: "\r"
+subscribers:
+  - ip: 127.0.0.1
+    port: 5000

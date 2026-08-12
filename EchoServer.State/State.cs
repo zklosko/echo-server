@@ -5,16 +5,18 @@ public class State
     public Dictionary<int, Space> Spaces { get; set; }
     public string EOM { get; set; }
     public List<Subscriber> Subscribers { get; set; }
+    public enum ChangeType { Preset, Off, Sequence, Zone }
+    public Action<int, ChangeType>? OnSpaceChanged { get; set; }
     private readonly object _lock = new();
 
-    public State(string eom)
+    public State(string eom, List<Subscriber> subscribers)
     {
         Spaces = new Dictionary<int, Space>();
         for (int i = 1; i <= 16; i++)
         {
             Spaces[i] = new Space();
         }
-        Subscribers = new List<Subscriber>();
+        Subscribers = subscribers;
         EOM = eom;
     }
 
@@ -40,10 +42,11 @@ public class State
             }
             if (preset < 1 || preset > 64)
             {
-                throw new ArgumentOutOfRangeException($"preset number {preset} not in range 1-64");
+                throw new ArgumentOutOfRangeException(nameof(preset), $"preset number {preset} not in range 1-64");
             }
             Spaces[spaceNum].ActivePreset = preset;
         }
+        OnSpaceChanged?.Invoke(spaceNum, ChangeType.Preset);
     }
 
     public int GetZoneLevel(int spaceNum, int zoneNum)
@@ -78,10 +81,11 @@ public class State
             }
             if (level < 0 || level > 255)
             {
-                throw new ArgumentOutOfRangeException($"level {level} outside of acceptable range 0-255");
+                throw new ArgumentOutOfRangeException(nameof(level), $"level {level} outside of acceptable range 0-255");
             }
             s.Zones[zoneNum] = level;
         }
+        OnSpaceChanged?.Invoke(spaceNum, ChangeType.Zone);
     }
 
     public int GetSequenceStatus(int spaceNum, int seqNum)
@@ -116,6 +120,7 @@ public class State
             }
             s.Sequences[seqNum] = active ? 1 : 0;
         }
+        OnSpaceChanged?.Invoke(spaceNum, ChangeType.Sequence);
     }
 
     public bool IsSpaceOff(int spaceNum)
@@ -153,5 +158,6 @@ public class State
                 s.Zones[zoneNum] = 0;
             }
         }
+        OnSpaceChanged?.Invoke(spaceNum, ChangeType.Off);
     }
 }

@@ -1,0 +1,19 @@
+# Build results
+bin/
+obj/
+
+# Rider
+.idea/
+
+# VS Code
+.vscode/
+
+# User-specific files
+*.user
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Publish output
+publish/

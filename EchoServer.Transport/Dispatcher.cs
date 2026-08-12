@@ -18,7 +18,7 @@ public class Dispatcher
                                                   E$help [EOM]
                                               """;
 
-    private static string BuildSeqReply(int spaceNum, State.State state)
+    public static string BuildSeqReply(int spaceNum, State.State state)
     {
         var msg = "";
         for (var s = 1; s <= 4; s++)
@@ -30,7 +30,7 @@ public class Dispatcher
         return msg;
     }
     
-    private static string BuildZoneReply(int spaceNum, State.State state)
+    public static string BuildZoneReply(int spaceNum, State.State state)
     {
         var msg = "";
         for (var z = 1; z <= 16; z++)

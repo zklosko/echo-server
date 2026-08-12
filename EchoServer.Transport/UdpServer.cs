@@ -2,6 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Text;
 using EchoServer.Protocol;
+using EchoServer.State;
 
 namespace EchoServer.Transport;
 
@@ -45,8 +46,8 @@ public class UdpServer
                 if (reply != null)
                 {
                     byte[] replyBytes = Encoding.ASCII.GetBytes(reply);
-                    Console.WriteLine($"Sending {reply.Replace("\r", "\\r").Replace("\n", "\\n")} to {result.RemoteEndPoint}");
-                    await _udpClient.SendAsync(replyBytes, reply.Length, result.RemoteEndPoint);
+                    Logger.Log($"Sending {Logger.Escape(reply)} to {result.RemoteEndPoint}");
+                    await _udpClient.SendAsync(replyBytes, replyBytes.Length, result.RemoteEndPoint);
                 }
             }
             catch (Exception e)
