@@ -17,3 +17,6 @@ Thumbs.db
 
 # Publish output
 publish/
+
+# Development notes
+TODO.md
