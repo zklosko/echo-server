@@ -9,6 +9,11 @@ public class Settings
     public string Eom { get; set; } = "\r";
     public List<SubscriberSettings> Subscribers { get; set; } = new();
 
+    /// <summary>
+    /// Loads EOM, port, and subscribers from yaml file
+    /// </summary>
+    /// <param name="path"></param>
+    /// <returns></returns>
     public static Settings Load(string path)
     {
         var deserializer = new DeserializerBuilder()

@@ -1,5 +1,8 @@
 namespace EchoServer.Protocol;
 
+/// <summary>
+/// Command schema as referenced in the ETC Echo Integration Interface manual and on etcconnect.com
+/// </summary>
 public static class CommandSchema
 {
     public static readonly Dictionary<string, List<ArgSpec>> Table = new()

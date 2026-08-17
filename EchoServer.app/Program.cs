@@ -2,6 +2,8 @@
 using EchoServer.State;
 using EchoServer.Transport;
 
+// Select yaml file containing settings from command line args:
+// app.exe --file <location>
 static string SelectSettingsFile(string[] args)
 {
     var fileArgPos = Array.IndexOf(args, "--file");

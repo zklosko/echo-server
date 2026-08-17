@@ -11,11 +11,17 @@ public class UdpServer
     private readonly UdpClient _udpClient;
     private readonly State.State _state;
 
+    /// <summary>
+    /// Creates UDP server/socket
+    /// </summary>
+    /// <param name="port"></param>
+    /// <param name="state"></param>
     public UdpServer(int port, State.State state)
     {
         _udpClient = new UdpClient(port);
         _state = state;
         
+        // Windows-specific work-around for UDP sockets
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
         {
             const int SIO_UDP_CONNRESET = -1744830452;
@@ -23,6 +29,11 @@ public class UdpServer
         }
     }
 
+    /// <summary>
+    /// Main UDP server process loop
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="ArgumentException"></exception>
     public async Task RunAsync()
     {
         Console.WriteLine("Listening...");

@@ -2,6 +2,9 @@
 
 namespace EchoServer.Transport;
 
+/// <summary>
+/// Builds replies to send to subscribers and as ACK commands
+/// </summary>
 public class Dispatcher
 {
     private static readonly string HELPTEXT = """
@@ -58,6 +61,14 @@ public class Dispatcher
         return msg;
     }
     
+    /// <summary>
+    /// Main reply-builder method
+    /// </summary>
+    /// <param name="verb">Command prefix</param>
+    /// <param name="args"></param>
+    /// <param name="state"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentException"></exception>
     public static string? Dispatch(string verb, double[] args, State.State state)
     {
         switch (verb)

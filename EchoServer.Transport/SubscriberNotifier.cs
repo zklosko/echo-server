@@ -5,6 +5,9 @@ using EchoServer.State;
 
 namespace EchoServer.Transport;
 
+/// <summary>
+/// Methods and attributes notifying subscribers of state changes
+/// </summary>
 public class SubscriberNotifier
 {
     private readonly UdpClient _udpClient;

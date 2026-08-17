@@ -1,10 +1,10 @@
 # Echo Server
 
-1:1 compatible API server for ETC Echo plugin development for A/V control systems.
+1:1 compatible API server for ETC Echo plugin development without access to a live device.
 
 ## Getting Started
 
-Head to releases to download the latest executable. Port, EOM character, and subscribers can all be configured with a `settings.yml` file in the same directory as `EchoServer.exe`.
+Head to releases to download the latest zip filder. Port, EOM character, and subscribers can all be configured with a `settings.yml` file in the same directory as `EchoServer.exe`.
 
 If no settings are specified, the default port is 4703 and the default EOM is `\r`.
 

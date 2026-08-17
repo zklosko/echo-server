@@ -9,6 +9,11 @@ public class State
     public Action<int, ChangeType>? OnSpaceChanged { get; set; }
     private readonly object _lock = new();
 
+    /// <summary>
+    /// Creates a new state with 16 spaces, initialized
+    /// </summary>
+    /// <param name="eom">EOM character</param>
+    /// <param name="subscribers"></param>
     public State(string eom, List<Subscriber> subscribers)
     {
         Spaces = new Dictionary<int, Space>();
@@ -20,6 +25,12 @@ public class State
         EOM = eom;
     }
 
+    /// <summary>
+    /// Returns active preset for a given space
+    /// </summary>
+    /// <param name="spaceNum">Space id (1-16)</param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentException"></exception>
     public int GetActivePreset(int spaceNum)
     {
         lock (_lock)
@@ -32,6 +43,13 @@ public class State
         }
     }
 
+    /// <summary>
+    /// Activates a certain preset for a given space
+    /// </summary>
+    /// <param name="spaceNum">Space id (1-16)</param>
+    /// <param name="preset">Preset number (1-64)</param>
+    /// <exception cref="ArgumentException"></exception>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
     public void SetActivePreset(int spaceNum, int preset)
     {
         lock (_lock)
@@ -49,6 +67,13 @@ public class State
         OnSpaceChanged?.Invoke(spaceNum, ChangeType.Preset);
     }
 
+    /// <summary>
+    /// Returns the current level (0-255) of a specified zone
+    /// </summary>
+    /// <param name="spaceNum">Space id (1-16)</param>
+    /// <param name="zoneNum">Zone id (1-16)</param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentException"></exception>
     public int GetZoneLevel(int spaceNum, int zoneNum)
     {
         lock (_lock)
@@ -66,6 +91,14 @@ public class State
         }
     }
 
+    /// <summary>
+    /// Sets the level of a specified space's zone
+    /// </summary>
+    /// <param name="spaceNum">Space id (1-16)</param>
+    /// <param name="zoneNum">Zone id (1-16)</param>
+    /// <param name="level">Level (0-255)</param>
+    /// <exception cref="ArgumentException"></exception>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
     public void SetZoneLevel(int spaceNum, int zoneNum, int level)
     {
         lock (_lock)
