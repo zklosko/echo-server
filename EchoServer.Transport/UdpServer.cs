@@ -36,8 +36,6 @@ public class UdpServer
     /// <exception cref="ArgumentException"></exception>
     public async Task RunAsync()
     {
-        Console.WriteLine("Listening...");
-
         while (true)
         {
             try

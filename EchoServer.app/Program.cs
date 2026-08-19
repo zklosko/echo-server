@@ -18,6 +18,7 @@ static string SelectSettingsFile(string[] args)
 string path = SelectSettingsFile(args);
 var serverSettings = Settings.Load(path);
 
+// State setup
 var port = serverSettings.Port;
 var eom = serverSettings.Eom;
 var subscribers = serverSettings.Subscribers
@@ -25,8 +26,15 @@ var subscribers = serverSettings.Subscribers
     .ToList();
 var state = new State(eom, subscribers);
 
+// TUI setup
+var tui = new TUI(state, port);
+
+// Attach subscribers
 var notifier = new SubscriberNotifier(state);
-state.OnSpaceChanged = notifier.Notify;
+state.OnSpaceChanged += notifier.Notify;
+state.OnSpaceChanged += tui.Refresh;
     
 var server = new UdpServer(port, state);
-await server.RunAsync();
+_ = Task.Run(() => server.RunAsync());  // run server in background thread
+
+tui.Start();
