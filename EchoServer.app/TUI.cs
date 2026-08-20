@@ -8,6 +8,7 @@ namespace EchoServer.App
     {
         private readonly State.State _state;
         private int _selectedSpace = 1;
+        private readonly Text _instructions;
         private readonly Table _spacesTable;
         private readonly BarChart _zoneChart;
         private readonly Layout _layout;
@@ -18,6 +19,8 @@ namespace EchoServer.App
         public TUI(State.State state, int port)
         {
             _state = state;
+
+            _instructions = new Text("Use up and down keys to cycle between spaces");
 
             _spacesTable = new Table()
                 .AddColumn("Space")
@@ -38,15 +41,20 @@ namespace EchoServer.App
                     new Layout("Footer").Size(3)
                 );
 
-            _layout["Header"].Update(new Panel("[orange3]Echo Server[/]"));
+            _layout["Header"].Update(new Panel(_instructions).Header("[orange3]Echo Server[/]").Expand());
             _layout["Spaces"].Update(new Panel(_spacesTable).Header("Spaces"));
-            _layout["Zone"].Update(new Panel(_zoneChart).Header("Selected Zone"));
-            _layout["Footer"].Update(new Text($"Listening on port {port}"));
+            _layout["Zone"].Update(new Panel(_zoneChart));
+            _layout["Footer"].Update(new Markup($"[CadetBlue_1]Listening on port {port}[/]"));
 
         }
 
+        /// <summary>
+        /// Starts TUI and refresh cycle
+        /// </summary>
         public void Start()
         {
+            _ = Task.Run(ListenForInput);
+
             AnsiConsole.Live(_layout).Start(ctx =>
             {
                 _ctx = ctx;
@@ -55,6 +63,11 @@ namespace EchoServer.App
             });
         }
 
+        /// <summary>
+        /// Draws TUI, each call refreshes display
+        /// </summary>
+        /// <param name="spaceNum"></param>
+        /// <param name="changeType"></param>
         public void Refresh(int spaceNum, State.State.ChangeType changeType)
         {
             lock (_renderLock)
@@ -75,10 +88,21 @@ namespace EchoServer.App
                         {
                             seqSummary += _state.GetSequenceStatus(i, s) + " ";
                         }
-                        _spacesTable.AddRow($"{i}", $"{preset}", isOff ? "Yes" : "No", seqSummary.Trim());
+                        seqSummary = seqSummary.Trim();
+
+                        if (i == _selectedSpace)
+                        {
+                            _spacesTable.AddRow($"[orange1]{i}[/]", $"[orange1]{preset}[/]", $"[orange1]{(isOff ? "Yes" : "No")}[/]", $"[orange1]{seqSummary}[/]");
+                        }
+                        else
+                        {
+                            _spacesTable.AddRow($"{i}", $"{preset}", isOff ? "Yes" : "No", seqSummary);
+
+                        }
                     }
 
                     // get and display zone data
+                    _zoneChart.Label("Zones in selected space");
                     for (int z = 1; z <= 16; z++)
                     {
                         _zoneChart.AddItem($"{z}", _state.GetZoneLevel(_selectedSpace, z));
@@ -90,6 +114,27 @@ namespace EchoServer.App
                 {
                     Logger.Log($"TUI refresh failed: {e.Message}");
                 }
+            }
+        }
+
+        /// <summary>
+        /// Listens for keystrokes while program is running
+        /// </summary>
+        private void ListenForInput()
+        {
+            while (true)
+            {
+                var key = Console.ReadKey(intercept: true);
+                if (key.Key == ConsoleKey.UpArrow)
+                {
+                    _selectedSpace = _selectedSpace == 1 ? 16 : _selectedSpace - 1;
+                }
+                else if (key.Key == ConsoleKey.DownArrow)
+                {
+                    _selectedSpace = _selectedSpace == 16 ? 1: _selectedSpace + 1;
+                }
+
+                Refresh(_selectedSpace, State.State.ChangeType.Zone);
             }
         }
     }
