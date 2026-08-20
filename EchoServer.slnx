@@ -2,5 +2,6 @@
   <Project Path="EchoServer.App/EchoServer.App.csproj" />
   <Project Path="EchoServer.Protocol/EchoServer.Protocol.csproj" />
   <Project Path="EchoServer.State/EchoServer.State.csproj" />
+  <Project Path="EchoServer.Tests/EchoServer.Tests.csproj" Id="8d7ce65b-bfd2-4a2c-8b06-a43d59c24833" />
   <Project Path="EchoServer.Transport/EchoServer.Transport.csproj" />
 </Solution>
