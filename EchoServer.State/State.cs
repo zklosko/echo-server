@@ -121,6 +121,13 @@ public class State
         OnSpaceChanged?.Invoke(spaceNum, ChangeType.Zone);
     }
 
+    /// <summary>
+    /// Returns the status of a specified sequence (1-4) in a given space (1-16)
+    /// </summary>
+    /// <param name="spaceNum"></param>
+    /// <param name="seqNum"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentException"></exception>
     public int GetSequenceStatus(int spaceNum, int seqNum)
     {
         lock (_lock)
@@ -138,6 +145,13 @@ public class State
         }
     }
 
+    /// <summary>
+    /// Sets the status of a specified sequence (1-4) in a given space (1-16)
+    /// </summary>
+    /// <param name="spaceNum"></param>
+    /// <param name="seqNum"></param>
+    /// <param name="active"></param>
+    /// <exception cref="ArgumentException"></exception>
     public void SetSequenceStatus(int spaceNum, int seqNum, bool active)
     {
         lock (_lock)
@@ -156,6 +170,12 @@ public class State
         OnSpaceChanged?.Invoke(spaceNum, ChangeType.Sequence);
     }
 
+    /// <summary>
+    /// Returns true if all zones in the specified space are off (level 0), false otherwise
+    /// </summary>
+    /// <param name="spaceNum"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentException"></exception>
     public bool IsSpaceOff(int spaceNum)
     {
         lock (_lock)
@@ -177,6 +197,11 @@ public class State
         }
     }
 
+    /// <summary>
+    /// Sets all zones in the specified space to off (level 0)
+    /// </summary>
+    /// <param name="spaceNum"></param>
+    /// <exception cref="ArgumentException"></exception>
     public void SetSpaceOff(int spaceNum)
     {
         lock (_lock)
